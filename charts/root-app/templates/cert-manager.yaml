@@ -10,6 +10,9 @@ spec:
     repoURL: https://github.com/vexdev/vex-k8s.git
     path: charts/cert-manager
     targetRevision: HEAD
+    helm:
+      values: |
+        installCRDs: true
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
