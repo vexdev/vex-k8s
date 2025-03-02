@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: adguard-tls-ingress
   annotations:
-    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serverScheme: http  # Ensure HTTP backend
 spec:
+  ingressClassName: traefik
   rules:
     - host: adguard.vexdev.com
       http:
@@ -19,6 +21,6 @@ spec:
                 port:
                   number: 8080
   tls:
-    - secretName: adguard-tls
-      hosts:
+    - hosts:
         - adguard.vexdev.com
+      secretName: adguard-tls
