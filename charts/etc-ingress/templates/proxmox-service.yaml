@@ -5,7 +5,7 @@ metadata:
   name: proxmox-service
   annotations:
     traefik.ingress.kubernetes.io/service.serversscheme: https
-    traefik.ingress.kubernetes.io/service.serverstransport: skipverify
+    traefik.ingress.kubernetes.io/service.serverstransport: skipverify@kubernetescrd
 spec:
   type: ClusterIP  # Can also be NodePort or LoadBalancer
   ports:
