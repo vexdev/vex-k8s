@@ -1,24 +1,16 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
-  name: ha-tls-ingress
-  annotations:
-    spec.ingressClassName: traefik
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+  name: ha-ingress
 spec:
-  rules:
-    - host: ha.vexdev.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ha-service
-                port:
-                  number: 8123
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`ha.vexdev.com`)
+      kind: Rule
+      services:
+        - name: ha-external-service
+          kind: Service
+          port: 80  # Internal service port (ClusterIP service will handle forwarding)
   tls:
-    - secretName: ha-tls
-      hosts:
-        - ha.vexdev.com
+    certResolver: letsencrypt-prod

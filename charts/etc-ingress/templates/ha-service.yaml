@@ -2,22 +2,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ha-service
-  annotations:
-    traefik.ingress.kubernetes.io/service.serversscheme: http
+  name: ha-external-service
 spec:
-  type: ClusterIP  # Can also be NodePort or LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8123  # Internal cluster port
-      targetPort: 8123  # External service port
+      port: 80       # Internal service port (Traefik forwards here)
+      targetPort: 8123  # Target external service port
 ---
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: ha-service
+  name: ha-external-service
 subsets:
   - addresses:
-      - ip: 10.38.16.24 
+      - ip: 10.38.16.24  # External IP
     ports:
       - port: 8123  # External service port
