@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: default-headers
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: https
+    customResponseHeaders:
+      X-Content-Type-Options: nosniff
+    sslRedirect: true  # Redirect HTTP to HTTPS if not already redirected
+    stsSeconds: 31536000  # 1 year
+    stsIncludeSubdomains: true
+    stsPreload: true
