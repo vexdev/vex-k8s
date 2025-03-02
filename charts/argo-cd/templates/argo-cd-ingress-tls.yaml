@@ -19,6 +19,6 @@ spec:
                 port:
                   number: 443
   tls:
-    - secretName: argo-cd-tls
+    - secretName: argo-tls
       hosts:
         - argo.vexdev.com
