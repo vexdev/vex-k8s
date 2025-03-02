@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,5 +7,18 @@ metadata:
     traefik.ingress.kubernetes.io/service.serversscheme: https
     traefik.ingress.kubernetes.io/service.serverstransport: skipverify@kubernetescrd
 spec:
-  type: ExternalName
-  externalName: 10.38.16.2
+  type: ClusterIP  # Can also be NodePort or LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8006  # Internal cluster port
+      targetPort: 8006  # External service port
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: external-service
+subsets:
+  - addresses:
+      - ip: 10.38.16.2 
+    ports:
+      - port: 8006  # External service port
