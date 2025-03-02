@@ -9,7 +9,7 @@ metadata:
 spec:
   rules:
     - host: proxmox.vexdev.com
-      https:
+      http:
         paths:
           - path: /
             pathType: Prefix
