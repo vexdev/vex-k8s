@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: photos-service
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: http
+spec:
+  type: ClusterIP  # Can also be NodePort or LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 2283  # Internal cluster port
+      targetPort: 2283  # External service port
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: photos-service
+subsets:
+  - addresses:
+      - ip: 10.38.16.23 
+    ports:
+      - port: 2283  # External service port

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: photos-tls-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serverScheme: http  # Ensure HTTP backend
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-default-headers@kubernetescrd  # Fix WebSocket and headers
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: photos.vexdev.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: photos-service
+                port:
+                  number: 2283
+  tls:
+    - secretName: photos-tls
+      hosts:
+        - photos.vexdev.com
