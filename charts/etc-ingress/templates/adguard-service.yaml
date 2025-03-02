@@ -18,6 +18,6 @@ metadata:
   name: adguard-service
 subsets:
   - addresses:
-      - ip: 10.38.16.24 
+      - ip: 10.38.16.1 
     ports:
       - port: 8080  # External service port
