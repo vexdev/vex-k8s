@@ -33,6 +33,10 @@ postgresql:
         database: immich
         password: immich
   primary:
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: 500m
     livenessProbe:
       enabled: false
     readinessProbe:
