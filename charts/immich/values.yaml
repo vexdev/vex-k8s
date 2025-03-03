@@ -6,7 +6,6 @@ immich:
       existingClaim: photo-volume-claim
 redis:
   enabled: true
-cluster:
-  affinity:
-    nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+affinity:
+  nodeSelector:
+    kubernetes.io/hostname: k8s-node-vex
