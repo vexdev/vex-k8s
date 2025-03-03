@@ -9,6 +9,14 @@ immich:
       kubernetes.io/hostname: k8s-node-vex
   redis:
     enabled: true
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
   postgresql:
     enabled: true
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
+  machine-learning:
+    enabled: true
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
   useDeprecatedPostgresChart: true
