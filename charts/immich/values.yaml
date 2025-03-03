@@ -1,0 +1,12 @@
+image:
+  tag: v1.128.0
+immich:
+  persistence:
+    library:
+      existingClaim: photo-volume-claim
+redis:
+  enabled: true
+cluster:
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
