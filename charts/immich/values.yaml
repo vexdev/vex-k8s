@@ -20,6 +20,7 @@ immich:
   server:
     env:
       IMMICH_LOG_LEVEL: verbose
+      DB_VECTOR_EXTENSION: pgvector
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
 postgresql:
