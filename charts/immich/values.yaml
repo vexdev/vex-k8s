@@ -18,6 +18,8 @@ immich:
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
   server:
+    env:
+      IMMICH_LOG_LEVEL: verbose
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
 postgresql:
