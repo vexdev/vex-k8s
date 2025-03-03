@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: photos-volume-provisioner
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://kubernetes-sigs.github.io
+    chart: nfs-subdir-external-provisioner
+    targetRevision: 4.0.18
+    helm:
+      valuesObject:
+        nfs:
+          server: 10.38.16.20
+          path: /volume1/photo
+        storageClass:
+          name: nfs-photo
+        nodeSelector:
+          kubernetes.io/hostname: k8s-node-vex
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
