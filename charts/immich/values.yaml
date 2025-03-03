@@ -1,6 +1,4 @@
 immich:
-  env:
-    DB_SKIP_MIGRATIONS: true
   image:
     tag: v1.128.0
   immich:
@@ -32,6 +30,8 @@ immich:
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
   server:
+    env:
+      DB_SKIP_MIGRATIONS: true
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
   useDeprecatedPostgresChart: true
