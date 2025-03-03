@@ -1,12 +1,14 @@
-image:
-  tag: v1.128.0
 immich:
-  persistence:
-    library:
-      existingClaim: photo-volume-claim
-  nodeSelector:
-    kubernetes.io/hostname: k8s-node-vex
-redis:
-  enabled: true
-postgresql:
-  enabled: true
+  image:
+    tag: v1.128.0
+  immich:
+    persistence:
+      library:
+        existingClaim: photo-volume-claim
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
+  redis:
+    enabled: true
+  postgresql:
+    enabled: true
+  useDeprecatedPostgresChart: true
