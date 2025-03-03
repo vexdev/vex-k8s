@@ -18,8 +18,6 @@ immich:
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
   server:
-    env:
-      DB_SKIP_MIGRATIONS: true
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
 postgresql:
