@@ -18,7 +18,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: photos-service
+                name: immich-server
                 port:
                   number: 2283
   tls:
