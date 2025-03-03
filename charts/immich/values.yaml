@@ -1,4 +1,6 @@
 immich:
+  env:
+    DB_SKIP_MIGRATIONS: true
   image:
     tag: v1.128.0
   immich:
