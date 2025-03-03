@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nas-tls-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-default-headers@kubernetescrd  # Fix WebSocket and headers
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: nas.vexdev.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nas-service
+                port:
+                  number: 5001
+  tls:
+    - secretName: nas-tls
+      hosts:
+        - nas.vexdev.com
