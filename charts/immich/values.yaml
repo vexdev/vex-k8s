@@ -13,38 +13,6 @@ immich:
     replica:
       nodeSelector:
         kubernetes.io/hostname: k8s-node-vex
-  postgresql:
-    image:
-      repository: tensorchord/pgvecto-rs
-      tag: pg16-v0.2.0
-    global:
-      postgresql:
-        auth:
-          username: immich
-          database: immich
-          password: immich
-    primary:
-      livenessProbe:
-        enabled: false
-      readinessProbe:
-        enabled: false
-      nodeSelector:
-        kubernetes.io/hostname: k8s-node-vex
-      containerSecurityContext:
-        readOnlyRootFilesystem: false
-      initdb:
-        scripts:
-          create-extensions.sql: |
-            CREATE EXTENSION cube;
-            CREATE EXTENSION earthdistance;
-            CREATE EXTENSION vectors;
-    readReplicas:
-      nodeSelector:
-        kubernetes.io/hostname: k8s-node-vex
-    backup:
-      cronjob:
-        nodeSelector:
-          kubernetes.io/hostname: k8s-node-vex
   machine-learning:
     enabled: true
     nodeSelector:
@@ -54,4 +22,35 @@ immich:
       DB_SKIP_MIGRATIONS: true
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
-  useDeprecatedPostgresChart: true
+postgresql:
+  image:
+    repository: tensorchord/pgvecto-rs
+    tag: pg16-v0.2.0
+  global:
+    postgresql:
+      auth:
+        username: immich
+        database: immich
+        password: immich
+  primary:
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
+    initdb:
+      scripts:
+        create-extensions.sql: |
+          CREATE EXTENSION cube;
+          CREATE EXTENSION earthdistance;
+          CREATE EXTENSION vectors;
+  readReplicas:
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
+  backup:
+    cronjob:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
