@@ -21,7 +21,7 @@ spec:
           kubernetes.io/hostname: k8s-node-vex
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: immich
   syncPolicy:
     automated:
       prune: true
