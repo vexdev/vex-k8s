@@ -27,6 +27,8 @@ postgresql:
     repository: pgvector/pgvector
     tag: 0.8.0-pg17
   global:
+    security:
+      allowInsecureImages: true
     postgresql:
       auth:
         username: immich
