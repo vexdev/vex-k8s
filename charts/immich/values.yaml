@@ -5,18 +5,31 @@ immich:
     persistence:
       library:
         existingClaim: photo-volume-claim
-    nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
   redis:
     enabled: true
-    nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+    master:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
+    replica:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
   postgresql:
     enabled: true
-    nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+    primary:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
+    readReplicas:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
+    backup:
+      cronjob:
+        nodeSelector:
+          kubernetes.io/hostname: k8s-node-vex
   machine-learning:
     enabled: true
+    nodeSelector:
+      kubernetes.io/hostname: k8s-node-vex
+  server:
     nodeSelector:
       kubernetes.io/hostname: k8s-node-vex
   useDeprecatedPostgresChart: true
