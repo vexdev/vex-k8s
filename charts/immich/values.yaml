@@ -15,6 +15,9 @@ immich:
         kubernetes.io/hostname: k8s-node-vex
   postgresql:
     enabled: true
+    image:
+      repository: tensorchord/pgvecto-rs
+      tag: pg16-v0.2.0
     primary:
       nodeSelector:
         kubernetes.io/hostname: k8s-node-vex
