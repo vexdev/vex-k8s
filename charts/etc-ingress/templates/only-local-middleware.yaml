@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: proxmox-ip-whitelist
+  namespace: kube-system
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 10.38.16.0/24
