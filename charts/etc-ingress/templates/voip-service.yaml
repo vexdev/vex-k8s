@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voip-service
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: http
+spec:
+  type: ClusterIP  # Can also be NodePort or LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80  # Internal cluster port
+      targetPort: 80  # External service port
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: voip-service
+subsets:
+  - addresses:
+      - ip: 10.38.16.50
+    ports:
+      - port: 80  # External service port

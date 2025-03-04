@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: voip-tls-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serverScheme: http  # Ensure HTTP backend
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: voip.vexdev.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: voip-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - voip.vexdev.com
+      secretName: voip-tls
