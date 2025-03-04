@@ -17,6 +17,10 @@ spec:
           path: /volume1/photo
         storageClass:
           name: nfs-photo
+          reclaimPolicy: Retain  # Prevents auto-deletion of data when PVC is removed
+          pathPattern: "${.PVC.name}"  # Ensures predictable directory names
+          archiveOnDelete: false  # Prevents the provisioner from archiving folders
+          onDelete: retain  # Explicitly retains folders when PVC is deleted
         nodeSelector:
           kubernetes.io/hostname: k8s-node-vex
   destination:
