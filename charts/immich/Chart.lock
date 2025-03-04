@@ -5,5 +5,8 @@ dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 16.4.15
-digest: sha256:e51e640bf05a1cd3487e78f11fd794cc17befc08f35609e09a1704a74fe6956d
-generated: "2025-03-03T23:03:06.50216+01:00"
+- name: nfs-subdir-external-provisioner
+  repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  version: 4.0.18
+digest: sha256:515b8e92c178f0a7ce651df4cffa803bd866ae4f9967039af16d85b58bb5b1d2
+generated: "2025-03-04T22:28:45.80066+01:00"
