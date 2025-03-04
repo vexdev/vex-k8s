@@ -7,6 +7,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/service.serverScheme: http  # Ensure HTTP backend
+    traefik.ingress.kubernetes.io/router.middlewares: default-default-headers@kubernetescrd,default-redirect-https@kubernetescrd,default-only-local-middleware@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
