@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zigbee-service
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: http
+spec:
+  type: ClusterIP  # Can also be NodePort or LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080  # Internal cluster port
+      targetPort: 8080  # External service port
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: zigbee-service
+subsets:
+  - addresses:
+      - ip: 10.38.16.54
+    ports:
+      - port: 8080  # External service port
