@@ -1,0 +1,39 @@
+nfs-subdir-external-provisioner:
+  nfs:
+    server: 10.38.16.20
+    path: /volume1/actual
+  storageClass:
+    name: nfs-actual
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "${.PVC.name}" # Ensures predictable directory names
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    kubernetes.io/hostname: k8s-node-vex
+actualbudget:
+  strategy:
+    type: Recreate
+  files:
+    server: /data/server-files
+    user: /data/user-files
+  ingress:
+    enabled: true
+    className: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/service.serverScheme: http  # Ensure HTTP backend
+      traefik.ingress.kubernetes.io/router.middlewares: default-default-headers@kubernetescrd  # Fix WebSocket and headers
+    hosts:
+      - host: actual.vexdev.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: actual-tls
+        hosts:
+          - actual.vexdev.com
+  persistence:
+    enabled: true
+    existingClaim: actual-volume-claim

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: actual-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-actual
+  resources:
+    requests:
+      storage: 100Mi
