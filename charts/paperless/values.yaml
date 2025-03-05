@@ -1,0 +1,55 @@
+paperless-ngx:
+  env:
+    TZ: Europe/Zurich
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: paperless.vexdev.com
+          paths:
+            - path: /
+      annotations:
+        spec.ingressClassName: traefik
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/service.serversscheme: http
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-default-headers@kubernetescrd
+      tls:
+        - secretName: paperless-tls
+          hosts:
+            - paperless.vexdev.com
+  postgresql:
+    enabled: true
+    primary:
+      persistence:
+        enabled: true
+        storageClass: nfs-paperless
+  redis:
+    enabled: true
+  persistence:
+    data:
+      enabled: true
+      storageClass: nfs-paperless
+    media:
+      enabled: true
+      storageClass: nfs-paperless
+    export:
+      enabled: true
+      storageClass: nfs-paperless
+    consume:
+      enabled: true
+      storageClass: nfs-paperless
+
+nfs-subdir-external-provisioner:
+  nfs:
+    server: 10.38.16.20
+    path: /volume1/paperless
+  storageClass:
+    name: nfs-paperless
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "${.PVC.name}" # Ensures predictable directory names
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    kubernetes.io/hostname: k8s-node-vex

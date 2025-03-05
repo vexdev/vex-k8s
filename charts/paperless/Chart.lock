@@ -1,0 +1,9 @@
+dependencies:
+- name: paperless-ngx
+  repository: oci://ghcr.io/gabe565/charts
+  version: 0.24.1
+- name: nfs-subdir-external-provisioner
+  repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  version: 4.0.18
+digest: sha256:84ef8ec951604cb557bb1e8f2318446c393da7efddeb9b81aed90e95d6842482
+generated: "2025-03-05T20:49:37.996436+01:00"
