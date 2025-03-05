@@ -22,6 +22,8 @@ paperless-ngx:
   postgresql:
     enabled: true
     primary:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-vex
       persistence:
         enabled: true
         storageClass: nfs-paperless
@@ -50,6 +52,8 @@ paperless-ngx:
       storageClass: nfs-paperless
       accessMode: ReadWriteOnce
       size: 4Gi
+  nodeSelector:
+    kubernetes.io/hostname: k8s-node-vex
 
 nfs-subdir-external-provisioner:
   nfs:
