@@ -9,20 +9,20 @@ immich:
     enabled: true
     master:
       nodeSelector:
-        kubernetes.io/hostname: k8s-node-vex
+        vex.location: swisshome
     replica:
       nodeSelector:
-        kubernetes.io/hostname: k8s-node-vex
+        vex.location: swisshome
   machine-learning:
     enabled: true
     nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+      vex.location: swisshome
   server:
     env:
       IMMICH_LOG_LEVEL: verbose
       DB_VECTOR_EXTENSION: pgvector
     nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+      vex.location: swisshome
 postgresql:
   image:
     repository: pgvector/pgvector
@@ -41,7 +41,7 @@ postgresql:
         memory: 1Gi
         cpu: 500m
     nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+      vex.location: swisshome
     containerSecurityContext:
       readOnlyRootFilesystem: false
     initdb:
@@ -52,11 +52,11 @@ postgresql:
           CREATE EXTENSION vectors;
   readReplicas:
     nodeSelector:
-      kubernetes.io/hostname: k8s-node-vex
+      vex.location: swisshome
   backup:
     cronjob:
       nodeSelector:
-        kubernetes.io/hostname: k8s-node-vex
+        vex.location: swisshome
 nfs-subdir-external-provisioner:
   nfs:
     server: 10.38.16.20
@@ -68,4 +68,4 @@ nfs-subdir-external-provisioner:
     archiveOnDelete: false # Prevents the provisioner from archiving folders
     onDelete: retain # Explicitly retains folders when PVC is deleted
   nodeSelector:
-    kubernetes.io/hostname: k8s-node-vex
+    vex.location: swisshome

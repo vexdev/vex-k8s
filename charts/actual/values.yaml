@@ -9,7 +9,7 @@ nfs-subdir-external-provisioner:
     archiveOnDelete: false # Prevents the provisioner from archiving folders
     onDelete: retain # Explicitly retains folders when PVC is deleted
   nodeSelector:
-    kubernetes.io/hostname: k8s-node-vex
+    vex.location: swisshome
 actualbudget:
   strategy:
     type: Recreate
