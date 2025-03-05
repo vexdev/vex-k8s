@@ -37,3 +37,6 @@ actualbudget:
   persistence:
     enabled: true
     existingClaim: actual-volume-claim
+  upload:
+    fileSizeLimitMB: 50
+    fileSizeSyncLimitMB: 50
