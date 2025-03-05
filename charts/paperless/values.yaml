@@ -25,21 +25,31 @@ paperless-ngx:
       persistence:
         enabled: true
         storageClass: nfs-paperless
+        accessMode: ReadWriteOnce
+        size: 1Gi
   redis:
     enabled: true
   persistence:
     data:
       enabled: true
       storageClass: nfs-paperless
+      accessMode: ReadWriteOnce
+      size: 1Gi
     media:
       enabled: true
       storageClass: nfs-paperless
+      accessMode: ReadWriteOnce
+      size: 8Gi
     export:
       enabled: true
       storageClass: nfs-paperless
+      accessMode: ReadWriteOnce
+      size: 1Gi
     consume:
       enabled: true
       storageClass: nfs-paperless
+      accessMode: ReadWriteOnce
+      size: 4Gi
 
 nfs-subdir-external-provisioner:
   nfs:
