@@ -7,8 +7,6 @@ metadata:
     spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-longhorn-basic-auth@kubernetescrd
-    traefik.ingress.kubernetes.io/auth-type: basic
-    traefik.ingress.kubernetes.io/auth-secret: longhorn-basicauth
 spec:
   rules:
     - host: longhorn.vexdev.com
