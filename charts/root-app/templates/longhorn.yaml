@@ -6,14 +6,10 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-    - chart: longhorn
-      repoURL: https://charts.longhorn.io/
-      targetRevision: v1.8.1
-      helm:
-        values: |
-          preUpgradeChecker:
-            jobEnabled: false
+  source:
+    repoURL: https://github.com/vexdev/vex-k8s.git
+    path: charts/longhorn
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
@@ -21,5 +17,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
