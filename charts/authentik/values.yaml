@@ -1,7 +1,8 @@
 authentik:
   global:
     env:
-      - AUTHENTIK_LOG_LEVEL: "trace"
+      - name: "AUTHENTIK_LOG_LEVEL"
+        value: "trace"
     envFrom:
       - secretRef:
           name: authentik-secret-envs
