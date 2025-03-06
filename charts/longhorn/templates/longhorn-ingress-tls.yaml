@@ -19,9 +19,6 @@ spec:
                 name: longhorn-frontend
                 port:
                   number: 80
-    - host: longhorn.vexdev.com
-      http:
-        paths:
           - path: /outpost.goauthentik.io/
             pathType: Prefix
             backend:
