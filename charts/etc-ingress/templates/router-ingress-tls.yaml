@@ -5,7 +5,7 @@ metadata:
   annotations:
     spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-only-local-middleware@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-authentik@kubernetescrd
 spec:
   rules:
     - host: router.vexdev.com
