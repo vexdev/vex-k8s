@@ -25,7 +25,7 @@ authentik:
     auth:
       existingSecret: "authentik-secret-envs"
       secretKeys:
-        userPasswordKey: postgres_password
+        userPasswordKey: POSTGRES_PASSWORD
 
   redis:
     enabled: true
