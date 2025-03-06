@@ -1,0 +1,29 @@
+authentik:
+  global:
+    envFrom:
+      - secretRef:
+          name: authentik-secret-envs
+  secret_key: "env://ONEPASSWORD_AUTHENTIK_SECRET_KEY"
+
+server:
+  ingress:
+    ingressClassName: traefik
+    enabled: true
+    hosts:
+      - authentik.vexdev.com
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.middlewares: default-default-headers@kubernetescrd,default-redirect-https@kubernetescrd
+    tls:
+      - secretName: authentik-tls
+        hosts:
+          - authentik.vexdev.com
+postgresql:
+  enabled: true
+  auth:
+    existingSecret: "authentik-secret-envs"
+    secretKeys:
+      userPasswordKey: POSTGRES_PASSWORD
+
+redis:
+  enabled: true
