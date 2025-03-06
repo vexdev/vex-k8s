@@ -19,13 +19,13 @@ authentik:
         - secretName: authentik-tls
           hosts:
             - authentik.vexdev.com
-            
+
   postgresql:
     enabled: true
     auth:
       existingSecret: "authentik-secret-envs"
       secretKeys:
-        userPasswordKey: POSTGRES_PASSWORD
+        userPasswordKey: postgres_password
 
   redis:
     enabled: true
