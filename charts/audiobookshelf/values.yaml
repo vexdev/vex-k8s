@@ -26,6 +26,9 @@ common:
         - host: library.vexdev.com
           paths:
             - path: /
+              pathType: Prefix
+              service:
+                port: http
       annotations:
         spec.ingressClassName: traefik
         cert-manager.io/cluster-issuer: letsencrypt-prod
