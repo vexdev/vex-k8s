@@ -10,6 +10,7 @@ argo-cd:
             name: authentik
             config:
               issuer: http://authentik-server.authentik:80/application/o/argo/
+              redirectURI: https://argo.vexdev.com/application/o/argo/callback
               clientID: $argo-secrets:authentik.client.id
               clientSecret: $argo-secrets:authentik.client.secret
               insecureEnableGroups: true
