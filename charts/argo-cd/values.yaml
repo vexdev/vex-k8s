@@ -1,7 +1,7 @@
 argo-cd:
   configs:
     cm:
-      dex.config:
+      dex.config: |
         connectors:
           - type: oidc
             id: authentik
