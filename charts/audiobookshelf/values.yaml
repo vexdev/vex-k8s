@@ -1,9 +1,11 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-3.2.0/charts/other/app-template/values.schema.json
 common:
+  defaultPodOptions:
+    nodeSelector:
+      vex.location: swisshome
   controllers:
     main:
       strategy: Recreate
-
       containers:
         main:
           image:
@@ -28,8 +30,8 @@ common:
             - path: /
               pathType: Prefix
               service:
-                name: audiobookshelf
-                port: 80
+                identifier: main
+                port: http
       annotations:
         spec.ingressClassName: traefik
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -58,10 +60,57 @@ common:
       size: 1Gi
       globalMounts:
         - path: /metadata
-    media:
+    audiobooks:
       enabled: true
-      type: persistentVolumeClaim
+      storageClass: nfs-abs-audiobooks
       accessMode: ReadWriteOnce
       size: 8Gi
-      globalMounts:
-        - path: /audiobooks
+    backup:
+      enabled: true
+      storageClass: nfs-abs-backup
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    books:
+      enabled: true
+      storageClass: nfs-abs-books
+      accessMode: ReadWriteOnce
+      size: 2Gi
+
+nfs1:
+  nfs:
+    server: 10.38.16.20
+    path: /volume1/audiobooks
+  storageClass:
+    name: nfs-abs-audiobooks
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "/" # Use the root of the NFS share
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    vex.location: swisshome
+
+nfs2:
+  nfs:
+    server: 10.38.16.20
+    path: /volume1/backup
+  storageClass:
+    name: nfs-abs-backup
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "/" # Use the root of the NFS share
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    vex.location: swisshome
+
+nfs3:
+  nfs:
+    server: 10.38.16.20
+    path: /volume1/books
+  storageClass:
+    name: nfs-abs-books
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "/" # Use the root of the NFS share
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    vex.location: swisshome
