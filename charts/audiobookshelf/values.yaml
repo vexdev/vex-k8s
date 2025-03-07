@@ -28,7 +28,7 @@ common:
             - path: /
               pathType: Prefix
               service:
-                name: http
+                name: audiobookshelf
                 port: 80
       annotations:
         spec.ingressClassName: traefik
