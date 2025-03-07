@@ -28,7 +28,8 @@ common:
             - path: /
               pathType: Prefix
               service:
-                port: http
+                name: http
+                port: 80
       annotations:
         spec.ingressClassName: traefik
         cert-manager.io/cluster-issuer: letsencrypt-prod
