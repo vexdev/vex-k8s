@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-3.2.0/charts/other/app-template/values.schema.json
+common:
+  controllers:
+    main:
+      strategy: Recreate
+
+      containers:
+        main:
+          image:
+            repository: ghcr.io/advplyr/audiobookshelf
+            tag: v2.19.5
+            pullPolicy: IfNotPresent
+          env:
+            TZ: Europe/Zurich
+
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: library.vexdev.com
+          paths:
+            - path: /
+      annotations:
+        spec.ingressClassName: traefik
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/service.serversscheme: http
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-default-headers@kubernetescrd
+      tls:
+        - secretName: audiobookshelf-tls
+          hosts:
+            - library.vexdev.com
+
+  # -- Configure persistence settings for the chart under this key.
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      globalMounts:
+        - path: /config
+    metadata:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      globalMounts:
+        - path: /metadata
+    media:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 8Gi
+      globalMounts:
+        - path: /audiobooks
