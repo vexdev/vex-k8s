@@ -9,9 +9,9 @@ argo-cd:
             id: authentik
             name: authentik
             config:
-              issuer: https://authentik.vexdev.com/application/o/argo/
-              clientID: KD1jhH1nkuqhhx7ySqgsAVLxFxZVd1YvQY0uMYQp
-              clientSecret: $argo-secrets:authentik_client_secret
+              issuer: http://authentik-server.authentik:80/application/o/argo/
+              clientID: $argo-secrets:authentik.client.id
+              clientSecret: $argo-secrets:authentik.client.secret
               insecureEnableGroups: true
               scopes:
                 - openid
