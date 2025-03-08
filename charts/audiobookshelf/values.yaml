@@ -65,16 +65,22 @@ common:
       storageClass: nfs-abs-audiobooks
       accessMode: ReadWriteOnce
       size: 8Gi
+      globalMounts:
+        - path: /mnt/nas/audiobooks
     backup:
       enabled: true
       storageClass: nfs-abs-backup
       accessMode: ReadWriteOnce
       size: 1Gi
+      globalMounts:
+        - path: /mnt/nas/backup
     books:
       enabled: true
       storageClass: nfs-abs-books
       accessMode: ReadWriteOnce
       size: 2Gi
+      globalMounts:
+        - path: /mnt/nas/books
 
 nfs1:
   nfs:
