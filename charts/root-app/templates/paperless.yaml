@@ -13,6 +13,23 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: paperless
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+      name: paperless-redis
+    - group: apps
+      jsonPointers:
+        - /spec/template/metadata/annotations
+      kind: StatefulSet
+      name: paperless-redis-master
+      namespace: paperless
+    - group: apps
+      jsonPointers:
+        - /spec/template/metadata/annotations
+      kind: StatefulSet
+      name: paperless-redis-replicas
+      namespace: paperless
   syncPolicy:
     automated:
       prune: true
