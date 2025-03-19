@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+description: Static assets for Vexdev
+name: assets
+version: 1.0.0
+dependencies:
+  - name: nginx
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 19.0.2
+  - name: nfs-subdir-external-provisioner
+    repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    version: 4.0.18
+    alias: nfs

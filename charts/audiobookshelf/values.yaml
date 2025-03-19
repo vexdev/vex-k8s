@@ -84,7 +84,7 @@ common:
 
 nfs1:
   nfs:
-    server: 10.38.16.20
+    server: 100.91.224.51
     path: /volume1/audiobooks
   storageClass:
     name: nfs-abs-audiobooks
@@ -97,7 +97,7 @@ nfs1:
 
 nfs2:
   nfs:
-    server: 10.38.16.20
+    server: 100.91.224.51
     path: /volume1/backup
   storageClass:
     name: nfs-abs-backup
@@ -110,7 +110,7 @@ nfs2:
 
 nfs3:
   nfs:
-    server: 10.38.16.20
+    server: 100.91.224.51
     path: /volume1/books
   storageClass:
     name: nfs-abs-books

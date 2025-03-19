@@ -1,0 +1,9 @@
+dependencies:
+- name: nginx
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 19.0.2
+- name: nfs-subdir-external-provisioner
+  repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  version: 4.0.18
+digest: sha256:727d92d9d991f0aecf84213104ae2b5132c1e6d1914757a801ca5959bbb50568
+generated: "2025-03-19T18:00:26.840207+01:00"

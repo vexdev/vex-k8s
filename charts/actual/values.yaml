@@ -1,6 +1,6 @@
 nfs-subdir-external-provisioner:
   nfs:
-    server: 10.38.16.20
+    server: 100.91.224.51
     path: /volume1/actual
   storageClass:
     name: nfs-actual

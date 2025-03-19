@@ -1,0 +1,26 @@
+nginx:
+  staticSitePVC: nfs-assets
+  ingress:
+    enabled: true
+    hostname: assets.vexdev.com
+    ingressClassName: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/service.serversscheme: http
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-default-headers@kubernetescrd
+    tls: true
+
+nfs:
+  nfs:
+    server: 100.91.224.51
+    path: /volume1/nfs-assets
+  storageClass:
+    name: nfs-assets
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "/" # Use the root of the NFS share
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    vex.location: swisshome

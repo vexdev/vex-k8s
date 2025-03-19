@@ -19,6 +19,6 @@ metadata:
   name: nas-service
 subsets:
   - addresses:
-      - ip: 10.38.16.20
+      - ip: 100.91.224.51
     ports:
       - port: 5001  # External service port
