@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-assets
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-assets
+  resources:
+    requests:
+      storage: 100Mi
