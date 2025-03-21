@@ -23,6 +23,11 @@ immich:
       DB_VECTOR_EXTENSION: pgvector
     nodeSelector:
       vex.location: swisshome
+    persistence:
+      synology:
+        enabled: true
+        mountPath: /synology
+        existingClaim: nas-homes-volume-claim
 postgresql:
   image:
     repository: pgvector/pgvector
@@ -57,7 +62,7 @@ postgresql:
     cronjob:
       nodeSelector:
         vex.location: swisshome
-nfs-subdir-external-provisioner:
+nfs-photos:
   nfs:
     server: 100.91.224.51
     path: /volume1/photo
@@ -65,6 +70,18 @@ nfs-subdir-external-provisioner:
     name: nfs-photo
     reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
     pathPattern: "${.PVC.name}" # Ensures predictable directory names
+    archiveOnDelete: false # Prevents the provisioner from archiving folders
+    onDelete: retain # Explicitly retains folders when PVC is deleted
+  nodeSelector:
+    vex.location: swisshome
+nfs-homes:
+  nfs:
+    server: 100.91.224.51
+    path: /volume1/homes
+  storageClass:
+    name: nfs-nas-homes
+    reclaimPolicy: Retain # Prevents auto-deletion of data when PVC is removed
+    pathPattern: "/" # Ensures predictable directory names
     archiveOnDelete: false # Prevents the provisioner from archiving folders
     onDelete: retain # Explicitly retains folders when PVC is deleted
   nodeSelector:

@@ -8,5 +8,8 @@ dependencies:
 - name: nfs-subdir-external-provisioner
   repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
   version: 4.0.18
-digest: sha256:515b8e92c178f0a7ce651df4cffa803bd866ae4f9967039af16d85b58bb5b1d2
-generated: "2025-03-04T22:28:45.80066+01:00"
+- name: nfs-subdir-external-provisioner
+  repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  version: 4.0.18
+digest: sha256:c43db48e099e494d6ae0db4c36abec341c6f2f48677d1c421ccd7c0a58a4753a
+generated: "2025-03-21T17:42:45.104362+01:00"
