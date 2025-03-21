@@ -13,6 +13,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: assets
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+      name: assets-nginx-tls
   syncPolicy:
     automated:
       prune: true
