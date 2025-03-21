@@ -23,8 +23,6 @@ argo-cd:
         g, Vexdev Read-only, role:readonly
   dex:
     enabled: true
-    certificateSecret:
-      enabled: true
   notifications:
     enabled: false
   applicationSet:
