@@ -9,7 +9,7 @@ immich:
     enabled: true
     master:
       persistence:
-        storageClass: local-storage
+        storageClass: local-path
       nodeSelector:
         vex.location: swisshome
     replica:
