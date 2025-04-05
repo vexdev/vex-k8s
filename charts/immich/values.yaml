@@ -8,6 +8,8 @@ immich:
   redis:
     enabled: true
     master:
+      persistence:
+        storageClass: local-storage
       nodeSelector:
         vex.location: swisshome
     replica:
