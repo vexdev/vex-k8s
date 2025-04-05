@@ -22,12 +22,18 @@ immich:
       liveness:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
       readiness:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
       startup:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
     nodeSelector:
       vex.location: swisshome
   server:
@@ -35,12 +41,18 @@ immich:
       liveness:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
       readiness:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
       startup:
         spec:
           timeoutSeconds: 4
+          periodSeconds: 30
+          failureThreshold: 10
     env:
       IMMICH_LOG_LEVEL: verbose
       DB_VECTOR_EXTENSION: pgvector
