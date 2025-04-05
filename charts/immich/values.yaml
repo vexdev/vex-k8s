@@ -17,9 +17,30 @@ immich:
         vex.location: swisshome
   machine-learning:
     enabled: true
+    # Timeout for the probes set to 3 seconds
+    probes:
+      liveness:
+        spec:
+          timeoutSeconds: 4
+      readiness:
+        spec:
+          timeoutSeconds: 4
+      startup:
+        spec:
+          timeoutSeconds: 4
     nodeSelector:
       vex.location: swisshome
   server:
+    probes:
+      liveness:
+        spec:
+          timeoutSeconds: 4
+      readiness:
+        spec:
+          timeoutSeconds: 4
+      startup:
+        spec:
+          timeoutSeconds: 4
     env:
       IMMICH_LOG_LEVEL: verbose
       DB_VECTOR_EXTENSION: pgvector
