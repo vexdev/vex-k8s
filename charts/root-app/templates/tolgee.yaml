@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://throrin19.github.io/helm-tolgee
+    repoURL: https://github.com/throrin19/helm-tolgee.git
     path: charts/tolgee
     targetRevision: 47c9f823904f30b207bdaf841d97c7079b2f7747
     helm:
