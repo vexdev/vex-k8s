@@ -1,5 +1,5 @@
 tolgee:
   image:
-    tag: 3.120.0
+    tag: v3.120.0
   ingress:
     enabled: true
