@@ -3,3 +3,5 @@ tolgee:
     tag: v3.120.0
   ingress:
     enabled: true
+  tolgee:
+    envFromSecretName: tolgee-secrets

@@ -5,5 +5,5 @@ name: tolgee
 version: 1.0.0
 dependencies:
   - name: tolgee
-    repository: https://throrin19.github.io/helm-tolgee/
-    version: 0.3.0
+    repository: https://vexdev.github.io/helm-tolgee/
+    version: 0.4.2
