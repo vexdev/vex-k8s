@@ -7,16 +7,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/throrin19/helm-tolgee.git
+    repoURL: https://github.com/vexdev/vex-k8s.git
     path: charts/tolgee
-    targetRevision: 47c9f823904f30b207bdaf841d97c7079b2f7747
-    helm:
-      values: |
-        image.tag: 3.120.0
-        ingress.enabled: true
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: tolgee
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+      name: tolgee-postgresql
   syncPolicy:
     automated:
       prune: true

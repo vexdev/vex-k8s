@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+description: Tolgee Helm Chart
+name: tolgee
+version: 1.0.0
+dependencies:
+  - name: tolgee
+    repository: https://throrin19.github.io/helm-tolgee/
+    version: 0.3.0

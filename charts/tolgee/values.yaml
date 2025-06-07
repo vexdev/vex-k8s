@@ -1,0 +1,5 @@
+tolgee:
+  image:
+    tag: 3.120.0
+  ingress:
+    enabled: true

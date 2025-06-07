@@ -1,0 +1,6 @@
+dependencies:
+- name: tolgee
+  repository: https://throrin19.github.io/helm-tolgee/
+  version: 0.3.0
+digest: sha256:ae300c021fa10f7ad06876b8882d8bc3dc9c9f6de8719fa64949d2f6ca7f2a22
+generated: "2025-06-07T10:37:01.850894+02:00"
