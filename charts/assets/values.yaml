@@ -1,5 +1,7 @@
 nginx:
   staticSitePVC: nfs-assets
+  service:
+    type: ClusterIP
   ingress:
     enabled: true
     hostname: assets.vexdev.com
