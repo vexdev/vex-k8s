@@ -29,6 +29,8 @@ k8s-monitoring:
   # Features to enable, which determines what data to collect
   clusterMetrics:
     enabled: true
+    opencost:
+      enabled: false
   clusterEvents:
     enabled: true
   podLogs:
