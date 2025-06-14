@@ -1,0 +1,64 @@
+alloy:
+  alloy:
+    envFrom:
+      - secretRef:
+          name: grafana-cloud-secret-envs
+    configMap:
+      content: |
+        prometheus.remote_write "vexdev_grafana_cloud_prometheus" {
+          endpoint {
+            url = "https://prometheus-prod-01-eu-west-0.grafana.net/api/prom"
+            basic_auth {
+              username = sys.env("GRAFANA_CLOUD_PROMETHEUS_USERNAME")
+              password = sys.env("GRAFANA_CLOUD_PROMETHEUS_PASSWORD")
+            }
+          }
+        }
+
+        // --- SCRAPE TARGETS ---
+
+        // Discover and scrape kube-state-metrics service
+        prometheus.scrape "kube_state_metrics" {
+          targets = discovery.kubernetes.services(
+            selectors: [
+              {role = "service", label = "app.kubernetes.io/name=kube-state-metrics"},
+            ]
+          ).targets
+          forward_to = [prometheus.remote_write.vexdev_grafana_cloud_prometheus.receiver]
+        }
+
+        // Discover and scrape node-exporter pods (installed by the Helm chart)
+        prometheus.scrape "node_exporter" {
+          targets = discovery.kubernetes.pods(
+            selectors: [
+              // The Helm chart uses 'prometheus-node-exporter' as the name label
+              {role = "pod", label = "app.kubernetes.io/name=prometheus-node-exporter"},
+            ]
+          ).targets
+          forward_to = [prometheus.remote_write.vexdev_grafana_cloud_prometheus.receiver]
+        }
+
+        // Discover and scrape Kubelets for pod/container resource metrics
+        discovery.kubernetes "kubelet" {
+          role = "node"
+        }
+        
+        prometheus.scrape "kubelet_metrics" {
+          targets = discovery.kubernetes.kubelet.targets
+          forward_to = [prometheus.remote_write.vexdev_grafana_cloud_prometheus.receiver]
+        
+          // Kubelet uses token auth. The Helm chart mounts this for us.
+          bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+        
+          // Kubelet uses a self-signed cert, so we must be insecure.
+          // This is standard practice for in-cluster Kubelet scraping.
+          tls_config {
+            insecure_skip_verify = true
+          }
+        
+          // Relabeling to use the node's instance label
+          relabel_config {
+            source_labels = ["__meta_kubernetes_node_name"]
+            target_label = "instance"
+          }
+        }

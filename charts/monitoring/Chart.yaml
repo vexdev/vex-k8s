@@ -1,0 +1,17 @@
+apiVersion: v2
+name: monitoring
+description: A Helm chart for monitoring Kubernetes clusters
+maintainers:
+  - name: Luca Vitucci
+    email: luca@vexdev.com
+version: 1.0.0
+dependencies:
+  - name: kube-state-metrics
+    repository: https://prometheus-community.github.io/helm-charts
+    version: 5.37.0
+  - name: prometheus-node-exporter
+    repository: https://prometheus-community.github.io/helm-charts
+    version: 4.47.0
+  - name: alloy
+    repository: https://grafana.github.io/helm-charts
+    version: 1.1.1
