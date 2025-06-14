@@ -9,7 +9,7 @@ argo-cd:
             id: authentik
             name: authentik
             config:
-              issuer: https://authentik.vexdev.com/application/o/argo/
+              issuer: https://authentik.vexdev.com/application/o/argocd/
               clientID: $argo-secrets:authentik.client.id
               clientSecret: $argo-secrets:authentik.client.secret
               insecureEnableGroups: true
