@@ -33,6 +33,9 @@ k8s-monitoring:
       enabled: false
     kepler:
       enabled: false
+    windows-exporter:
+      enabled: false
+      deploy: false
   clusterEvents:
     enabled: true
   podLogs:
