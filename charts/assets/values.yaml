@@ -13,6 +13,22 @@ nginx:
       traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-default-headers@kubernetescrd
     tls: true
+  serverBlock: |-
+    server {
+        listen  8080;
+
+        location ~ /\.(?!well-known).* {
+            deny all;
+            access_log off;
+            log_not_found off;
+        }
+        location /status {
+            stub_status on;
+            access_log   off;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
 
 nfs:
   nfs:
