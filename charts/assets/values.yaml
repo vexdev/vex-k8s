@@ -28,15 +28,6 @@ nginx:
             allow 127.0.0.1;
             deny all;
         }
-        location /topo.zip {
-            resolver 8.8.8.8 ipv6=off;
-            set $backend "https://data.geo.admin.ch";
-            proxy_pass $backend/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/amtliches-gebaeudeadressverzeichnis_ch/amtliches-gebaeudeadressverzeichnis_ch_2056.csv.zip;
-            proxy_redirect off;
-            proxy_ssl_server_name on;
-            proxy_ssl_name data.geo.admin.ch;
-            proxy_set_header Host data.geo.admin.ch;
-        }
     }
 
 nfs:
