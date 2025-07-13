@@ -29,6 +29,7 @@ nginx:
             deny all;
         }
         location /topo.zip {
+            resolver 8.8.8.8 ipv6=off;
             proxy_pass https://data.geo.admin.ch/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/amtliches-gebaeudeadressverzeichnis_ch/amtliches-gebaeudeadressverzeichnis_ch_2056.csv.zip;
             proxy_set_header Host www.google.com;
             proxy_redirect off;
