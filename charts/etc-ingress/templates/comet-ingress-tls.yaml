@@ -17,7 +17,7 @@ spec:
               service:
                 name: comet-service
                 port:
-                  number: 8443
+                  number: 443
   tls:
     - secretName: comet-tls
       hosts:
