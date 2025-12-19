@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: authentik
+  name: openwebui
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/vexdev/vex-k8s.git
-    path: charts/authentik
+    path: charts/openwebui
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: authentik
+    namespace: openwebui
   syncPolicy:
     automated:
       prune: false

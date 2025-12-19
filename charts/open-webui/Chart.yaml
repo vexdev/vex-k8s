@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+description: Open-WebUI is a web-based user interface for managing and interacting with various AI models and services.
+name: openwebui
+version: 1.0.0
+home: https://www.openwebui.org/
+dependencies:
+  - name: open-webui
+    repository: https://helm.openwebui.com/
+    version: 8.19.0

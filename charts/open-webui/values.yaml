@@ -1,0 +1,113 @@
+namespaceOverride: "openwebui"
+
+ollama:
+  enabled: false
+ollamaUrls: []
+ollamaUrlsFromExtraEnv: false
+
+pipelines:
+  enabled: true
+
+tika:
+  enabled: false
+
+websocket:
+  enabled: false
+
+clusterDomain: cluster.local
+
+# -- Additional custom labels to add to the Open WebUI deployment/statefulset metadata
+extraLabels: {}
+
+# -- Additional annotations to add to the Open WebUI deployment/statefulset metadata
+annotations: {}
+
+# -- Additional annotations to add to the Open WebUI pods
+podAnnotations: {}
+
+# -- Additional custom labels to add to the Open WebUI pods
+podLabels: {}
+
+# -- Number of Open WebUI replicas
+replicaCount: 1
+
+# -- Revision history limit for the workload manager (deployment).
+revisionHistoryLimit: 10
+
+# -- Priority class name for the Open WebUI pods
+priorityClassName: ""
+
+# -- Strategy for updating the workload manager: deployment or statefulset
+strategy: {}
+
+image:
+  repository: ghcr.io/open-webui/open-webui
+  tag: "v0.6.41"
+  pullPolicy: "IfNotPresent"
+  useSlim: false
+
+ingress:
+  enabled: true
+  class: "traefik"
+  annotations: 
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-default-headers@kubernetescrd,default-redirect-https@kubernetescrd
+  host: "ai.vexdev.com" # update to your real domain
+  tls: true
+  existingSecret: "openwebui-tls"
+
+persistence:
+  enabled: true
+  size: 2Gi
+  existingClaim: ""
+  subPath: ""
+  accessModes:
+    - ReadWriteOnce
+  storageClass: ""
+  selector: {}
+  annotations: {}
+  provider: local
+
+nodeSelector: {}
+
+service:
+  type: ClusterIP
+  port: 80
+  containerPort: 8080
+
+enableOpenaiApi: true
+openaiBaseApiUrl: "https://api.openai.com/v1"
+
+extraEnvVars: 
+  - name: OPENAI_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: openai-secret
+        key: credential
+  - name: OAUTH_CLIENT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: openwebui-envs-secret
+        key: OAUTH_CLIENT_SECRET
+  - name: OPENID_REDIRECT_URI
+    valueFrom:
+      secretKeyRef:
+        name: openwebui-envs-secret
+        key: OPENID_REDIRECT_URI
+
+sso:
+  enabled: true
+  enableSignup: true
+  mergeAccountsByEmail: true
+  enableRoleManagement: false
+  enableGroupManagement: true
+  oidc:
+    enabled: true
+    clientId: "VMjTn8XsWW0dCeBO6syqsAxnpCgkcynzSs0djn0m"
+    clientExistingSecret: "openwebui-envs-secret"
+    clientExistingSecretKey: "OAUTH_CLIENT_SECRET"
+    providerUrl: "https://authentik.vexdev.com/application/o/openwebui/.well-known/openid-configuration"
+    providerName: "SSO"
+    scopes: "openid email profile"
+  groupManagement:
+    groupsClaim: "groups"
