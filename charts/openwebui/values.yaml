@@ -52,7 +52,10 @@ open-webui:
     class: "traefik"
     annotations: 
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      traefik.ingress.kubernetes.io/router.middlewares: default-default-headers@kubernetescrd,default-redirect-https@kubernetescrd
+      traefik.ingress.kubernetes.io/service.serversscheme: http
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-default-headers@kubernetescrd
     host: "ai.vexdev.com" # update to your real domain
     tls: true
     existingSecret: "openwebui-tls"
