@@ -1,4 +1,4 @@
-openwebui:
+open-webui:
   namespaceOverride: "openwebui"
 
   ollama:
