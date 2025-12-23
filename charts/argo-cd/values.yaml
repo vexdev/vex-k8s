@@ -19,8 +19,8 @@ argo-cd:
                 - email
     rbac:
       policy.csv: |
-        g, Vexdev Admins, role:admin
-        g, Vexdev Read-only, role:readonly
+        g, vexdev_admin, role:admin
+        g, vexdev_ro, role:readonly
   dex:
     enabled: true
   notifications:
