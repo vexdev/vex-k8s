@@ -5,52 +5,17 @@ immich:
     persistence:
       library:
         existingClaim: photo-volume-claim
-  valkey:
-    enabled: true
   machine-learning:
     enabled: true
-    # Timeout for the probes set to 3 seconds
-    probes:
-      liveness:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-      readiness:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-      startup:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-    nodeSelector:
-      vex.location: swisshome
   server:
-    probes:
-      liveness:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-      readiness:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-      startup:
-        spec:
-          timeoutSeconds: 4
-          periodSeconds: 30
-          failureThreshold: 10
-    env:
-      IMMICH_LOG_LEVEL: verbose
-      DB_VECTOR_EXTENSION: pgvector
-      DB_HOSTNAME: immich-postgresql
-    nodeSelector:
-      vex.location: swisshome
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              IMMICH_LOG_LEVEL: verbose
+              DB_VECTOR_EXTENSION: pgvector
+              DB_HOSTNAME: immich-postgresql
     persistence:
       synology:
         enabled: true
