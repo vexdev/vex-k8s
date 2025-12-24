@@ -5,6 +5,8 @@ immich:
     persistence:
       library:
         existingClaim: photo-volume-claim
+  valkey:
+    enabled: true
   machine-learning:
     enabled: true
   server:
@@ -18,7 +20,7 @@ immich:
               DB_HOSTNAME: immich-postgresql
               DB_USERNAME: immich
               DB_PASSWORD: immich
-              DB_DATABASE: immich
+              DB_DATABASE_NAME: immich
     persistence:
       synology:
         enabled: true
