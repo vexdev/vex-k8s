@@ -16,6 +16,9 @@ immich:
               IMMICH_LOG_LEVEL: verbose
               DB_VECTOR_EXTENSION: pgvector
               DB_HOSTNAME: immich-postgresql
+              DB_USERNAME: immich
+              DB_PASSWORD: immich
+              DB_DATABASE: immich
     persistence:
       synology:
         enabled: true
