@@ -48,6 +48,7 @@ immich:
     env:
       IMMICH_LOG_LEVEL: verbose
       DB_VECTOR_EXTENSION: pgvector
+      DB_HOSTNAME: immich-postgresql
     nodeSelector:
       vex.location: swisshome
     persistence:
