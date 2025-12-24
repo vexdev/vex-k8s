@@ -1,20 +1,12 @@
 immich:
   image:
-    tag: v2.3.1
+    tag: v2.4.1
   immich:
     persistence:
       library:
         existingClaim: photo-volume-claim
-  redis:
+  valkey:
     enabled: true
-    master:
-      persistence:
-        storageClass: local-path
-      nodeSelector:
-        vex.location: swisshome
-    replica:
-      nodeSelector:
-        vex.location: swisshome
   machine-learning:
     enabled: true
     # Timeout for the probes set to 3 seconds
