@@ -1,4 +1,6 @@
 paperless-ngx:
+  image:
+    tag: 2.20.3
   env:
     TZ: Europe/Zurich
   ingress:
