@@ -10,7 +10,7 @@ common:
         main:
           image:
             repository: ghcr.io/advplyr/audiobookshelf
-            tag: 2.19.5
+            tag: 2.32.1
             pullPolicy: IfNotPresent
           env:
             TZ: Europe/Zurich
