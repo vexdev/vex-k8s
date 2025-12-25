@@ -3,6 +3,29 @@ paperless-ngx:
     tag: 2.20.3
   env:
     TZ: Europe/Zurich
+    PAPERLESS_ENABLE_ALLAUTH: true
+    PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+    PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
+        {
+          "openid_connect": {
+            "APPS": [
+              {
+                "provider_id": "authentik",
+                "name": "authentik",
+                "client_id": "1Ji8nyLQH6vVkyx6WW5U9w2fk2sDtblq655BqT9n",
+                "secret": "7ans1aAF9oZj3hG3AilyiI7nnXokrnzdprhZosWWC3wRD98GRqUwmw3xv10hmw5xubqG9N3M9GkT8NtBXYwix6wO6BNGFTn8Lni4vXBmXyQsgeRgrwCWorNWksIDJ6WD",
+                "settings": {
+                  "server_url": "https://authentik.vexdev.com/application/o/paperless/.well-known/openid-configuration",
+                  "claims": {"username": "email"}
+                }
+              }
+            ],
+            "OAUTH_PKCE_ENABLED": "True"
+          }
+        }
+    PAPERLESS_AUTO_LOGIN: true
+    PAPERLESS_AUTO_CREATE: true
+    PAPERLESS_LOGOUT_REDIRECT_URL: "https://authentik.vexdev.com/application/o/paperless/end-session/"
   ingress:
     main:
       enabled: true
