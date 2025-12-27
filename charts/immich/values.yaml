@@ -22,7 +22,7 @@ immich:
         containers:
           main:
             env:
-              DB_HOSTNAME: immich-database-rw
+              DB_HOSTNAME: immich-database-rw.cloudnative-pg
               DB_USERNAME: app
               DB_PASSWORD: EgBrjj5N64cEz3g1HqfNReAcphgFdVxqHs92dDVd7JjG3OPCXLuj9jghJYAbFgvs
               DB_DATABASE_NAME: app
