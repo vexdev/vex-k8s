@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
-  username: immich
-  password: immich
+  username: aW1taWNo
+  password: aW1taWNo
 kind: Secret
 metadata:
   name: app-secret
