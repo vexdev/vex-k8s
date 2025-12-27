@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: immich-cloudnativepg
+  name: cloudnativepg
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -18,7 +18,6 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: immich
 
   syncPolicy:
     automated:
