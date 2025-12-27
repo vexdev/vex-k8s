@@ -22,26 +22,10 @@ immich:
         containers:
           main:
             env:
-              DB_HOSTNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-database-app
-                    key: host
-              DB_USERNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-database-app
-                    key: user
-              DB_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-database-app
-                    key: password
-              DB_DATABASE_NAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-database-app
-                    key: dbname
+              DB_HOSTNAME: immich-database-rw
+              DB_USERNAME: app
+              DB_PASSWORD: EgBrjj5N64cEz3g1HqfNReAcphgFdVxqHs92dDVd7JjG3OPCXLuj9jghJYAbFgvs
+              DB_DATABASE_NAME: app
               # DB_VECTOR_EXTENSION: pgvector
               # DB_HOSTNAME: immich-postgresql
               # DB_USERNAME: immich
