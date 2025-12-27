@@ -18,9 +18,9 @@ spec:
       - "vchord.so"
 
   bootstrap:
-    database: immich
-    owner: immich
     initdb:
+      database: immich
+      owner: immich
       postInitApplicationSQL:
         - CREATE EXTENSION vchord CASCADE;
         - CREATE EXTENSION earthdistance CASCADE;
