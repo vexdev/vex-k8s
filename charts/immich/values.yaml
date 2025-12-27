@@ -19,7 +19,6 @@ immich:
         containers:
           main:
             env:
-              IMMICH_LOG_LEVEL: verbose
               DB_VECTOR_EXTENSION: pgvector
               DB_HOSTNAME: immich-postgresql
               DB_USERNAME: immich
