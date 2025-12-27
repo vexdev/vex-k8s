@@ -22,3 +22,5 @@ spec:
       postInitApplicationSQL:
         - CREATE EXTENSION vchord CASCADE;
         - CREATE EXTENSION earthdistance CASCADE;
+
+  enableSuperuserAccess: true
