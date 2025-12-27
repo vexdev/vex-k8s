@@ -16,7 +16,3 @@ dependencies:
     repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
     version: 4.0.18
     alias: nfs-homes
-  - name: cloudnative-pg
-    repository: https://cloudnative-pg.github.io/charts
-    version: 0.27.0
-    alias: cnpg
