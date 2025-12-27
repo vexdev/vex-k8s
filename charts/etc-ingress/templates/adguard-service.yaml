@@ -9,8 +9,8 @@ spec:
   type: ClusterIP  # Can also be NodePort or LoadBalancer
   ports:
     - protocol: TCP
-      port: 8080  # Internal cluster port
-      targetPort: 8080  # External service port
+      port: 3000  # Internal cluster port
+      targetPort: 3000  # External service port
 ---
 apiVersion: v1
 kind: Endpoints
@@ -20,4 +20,4 @@ subsets:
   - addresses:
       - ip: 10.38.16.1 
     ports:
-      - port: 8080  # External service port
+      - port: 3000  # External service port
