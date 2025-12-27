@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: immich-db-user
-  namespace: immich
+  namespace: default
 type: kubernetes.io/basic-auth
 stringData:
   username: immich
@@ -13,7 +13,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: immich-database
-  namespace: immich
+  namespace: default
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
