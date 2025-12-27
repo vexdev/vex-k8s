@@ -1,3 +1,6 @@
+cnpg:
+  crds:
+    create: true
 immich:
   controllers:
     main:
