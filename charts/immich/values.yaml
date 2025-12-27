@@ -26,7 +26,7 @@ immich:
               DB_DATABASE_NAME: immich
 
               DB_HOSTNAME: immich-database-rw.cloudnative-pg
-              DB_PASSWORD: RADf6CdyJRBxNFXyoMTf3a9c23Ffc4lWm3AbUxQ1ZMyPDWDUQWRx7DDKu5PZWxmz
+              DB_PASSWORD: immich
               # DB_VECTOR_EXTENSION: pgvector
               # DB_HOSTNAME: immich-postgresql
               # DB_PASSWORD: immich
