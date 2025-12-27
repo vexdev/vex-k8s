@@ -24,51 +24,13 @@ immich:
             env:
               DB_USERNAME: immich
               DB_DATABASE_NAME: immich
-
               DB_HOSTNAME: immich-database-rw.cloudnative-pg
               DB_PASSWORD: immich
-              # DB_VECTOR_EXTENSION: pgvector
-              # DB_HOSTNAME: immich-postgresql
-              # DB_PASSWORD: immich
     persistence:
       synology:
         enabled: true
         mountPath: /synology
         existingClaim: nas-homes-volume-claim
-postgresql:
-  image:
-    repository: pgvector/pgvector
-    tag: 0.8.0-pg17
-  global:
-    security:
-      allowInsecureImages: true
-    postgresql:
-      auth:
-        username: immich
-        database: immich
-        password: immich
-  primary:
-    resources:
-      requests:
-        memory: 1Gi
-        cpu: 500m
-    nodeSelector:
-      vex.location: swisshome
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    initdb:
-      scripts:
-        create-extensions.sql: |
-          CREATE EXTENSION cube;
-          CREATE EXTENSION earthdistance;
-          CREATE EXTENSION vectors;
-  readReplicas:
-    nodeSelector:
-      vex.location: swisshome
-  backup:
-    cronjob:
-      nodeSelector:
-        vex.location: swisshome
 nfs-photos:
   nfs:
     server: 100.91.224.51

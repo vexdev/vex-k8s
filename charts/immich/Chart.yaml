@@ -5,9 +5,6 @@ dependencies:
   - name: immich
     version: 0.10.3
     repository: https://immich-app.github.io/immich-charts
-  - name: postgresql
-    repository: https://charts.bitnami.com/bitnami
-    version: 16.4.15
   - name: nfs-subdir-external-provisioner
     repository: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
     version: 4.0.18
