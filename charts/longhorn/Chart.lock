@@ -1,6 +1,6 @@
 dependencies:
 - name: longhorn
   repository: https://charts.longhorn.io
-  version: 1.9.2
-digest: sha256:7ded527470910dac2ec0f969f745d3d56460d18269001adda680bdb3a33a2c18
-generated: "2025-12-28T12:40:46.779715+01:00"
+  version: 1.10.1
+digest: sha256:1d80c9e266daa5847cba4294ca1a93af9b3e5d75d2c7116f91e4209a45a314b8
+generated: "2025-12-28T12:46:45.897042+01:00"
