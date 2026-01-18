@@ -63,6 +63,11 @@ paperless-ngx:
       registry: docker.io
       repository: bitnamilegacy/redis
       tag: 7.4.2-debian-12-r0
+    auth:
+      enabled: true
+      username: ""
+      existingSecret: paperless-redis
+      existingSecretPasswordKey: redis-password
   persistence:
     data:
       enabled: true
