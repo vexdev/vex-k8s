@@ -1,6 +1,6 @@
 paperless-ngx:
   image:
-    tag: 2.20.3
+    tag: 2.20.4
   env:
     TZ: Europe/Zurich
     PAPERLESS_ENABLE_ALLAUTH: true
