@@ -56,6 +56,9 @@ paperless-ngx:
         size: 1Gi
   redis:
     enabled: true
+    global:
+      security:
+        allowInsecureImages: true
     image:
       registry: docker.io
       repository: bitnamilegacy/redis
