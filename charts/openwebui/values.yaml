@@ -1,4 +1,7 @@
 open-webui:
+  logging:
+    level: "debug"
+
   namespaceOverride: "openwebui"
 
   ollama:
