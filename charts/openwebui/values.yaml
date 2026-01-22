@@ -1,6 +1,6 @@
 open-webui:
-  logging:
-    level: "debug"
+  # logging:
+  #   level: "debug"
 
   namespaceOverride: "openwebui"
 
