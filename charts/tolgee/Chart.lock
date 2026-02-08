@@ -1,6 +1,6 @@
 dependencies:
 - name: tolgee
   repository: https://vexdev.github.io/helm-tolgee/
-  version: 0.4.2
-digest: sha256:fae518c7906bfe3639fe192ae7590baa2ae78d1e9ba3efb463cb62b9ef18c281
-generated: "2025-06-07T11:38:01.046839+02:00"
+  version: 0.4.3
+digest: sha256:1a671b7460afd0bbc6df84c0207b77954212bcd597d47a0aa9dc47576c1cc556
+generated: "2026-02-08T18:58:22.433149+01:00"
